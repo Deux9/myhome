@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html lang=de>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			home
+		</title>
+		<link rel="stylesheet" href="css/pure-min.css">
+		<link rel="stylesheet" href="css/grids-responsive-min.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/wettericons.css">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		
+		<!-- scripts, frameworks -->
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/jquery.simpleWeather.min.js"></script>
+		
+		<!--custom scripts-->
+		<script src="js/meinwetter.js"></script>
+		
+		<!--Einstellungen-->
+		<script>
+		ort = ["Potsdam, Germany", "Nauen, Germany","Rathenow, Germany"]//ENTER LOCATIONS HERE
+		</script>
+		
+	</head>
+	<body>
+		<!--
+		<div class="pure-g border-bottom">
+			<div class="pure-u-1 pure-u-md-1-2 header">
+				<h1>Das Internet</h1>
+			</div>
+		</div>-->
+		
+		
+		<div class="pure-g">
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-1-5">
+				<div class="griditem">
+					<div class="heading">Suche</div>
+					<form class="pure-form" method="post" action="http://startpage.com/do/search">
+						<input type="text" name="query" value="" placeholder="Startpage..."  />
+					</form>
+					<form class="pure-form" method="post" action="http://de.wikipedia.org/w/index.php">
+						<input type="text" name="search" value="" placeholder="Wikipedia (de)..."  />
+					</form>
+					<form class="pure-form" method="post" action="http://en.wikipedia.org/w/index.php">
+						<input type="text" name="search" value="" placeholder="Wikipedia (en)..."  />
+					</form>
+				</div>
+			</div>
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-1-5">
+				<div class="griditem">
+					<div class="heading">Geschäft</div>
+					<ul>
+						<li><a href="https://banking.ing-diba.de/">ING DiBa</a></li>
+						<li><a href="http://wikifolio.com">Wikifolio</a></li>
+						<li><a href="http://clark.de">Clark</a></li>
+						<li><a href="http://amazon.de">Amazon</a></li>
+						<li><a href="http://ebay.de">Ebay</a></li>
+						<li><a href="http://mindfactory.de">Mindfactory</a></li>
+						<li><a href="http://hukd.mydealz.de/custom">MyDealz</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-1-5">
+				<div class="griditem">
+					<div class="heading">Utility</div>
+					<ul>
+						<li><a href="http://mega.nz">MEGA</a></li>
+						<li><a href="http://posteo.de">Posteo</a></li>
+						<li><a href="http://wallhaven.cc">Wallhaven</a></li>
+						<li><a href="http://10minutemail.com">10minutemail</a></li>
+						<li><a href="http://lastfm.de">Last.fm</a></li>
+						<li><a href="http://ipv4.icanhazip.com">Meine IPv4</a></li>
+						<li><a href="http://speedof.me">Speedtest</a></li>
+						<li><a href="http://192.168.0.1">Mein Router</a></li>
+						<li><a href="http://merkur:8080">Kodi</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-1-5">
+				<div class="griditem">
+					<div class="heading">Content</div>
+					<ul>
+						<li><a href="http://github.com">Github</a></li>
+						<li><a href="http://twitter.com">Twitter</a></li>
+						<li><a href="http://youtu.be">YouTube</a></li>
+						<li><a href="http://deezer.com">Deezer</a></li>
+					</ul>
+				</div>
+			</div>
+							
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-1-5">
+				<div class="griditem">
+					<div class="heading">Arbeit</div>
+					<ul>
+						<li><a href="http://ggnauen.de">GGNauen Website</a></li>
+						<li><a href="https://mail.all-inkl.com">GGNauen Mail</a></li>
+						<li><a href="https://edu.brandenburg.de">Schulportal BB</a></li>
+						<li><a href="https://edu.brandenburg.de/webbschule/">weBBSchule</a></li>
+						<li><a href="https://portal.mnspro.cloud">MNSPro</a></li>
+					</ul>	
+				</div>
+			</div>
+			
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-1-5">
+				<div class="griditem">
+					<div class="heading">Filesharing</div>
+					<ul>
+						<li><a href="http://boerse.to">Boerse</a></li>
+						<li><a href="http://serienjunkies.org">Serienjunkies</a></li>
+						<li><a href="http://thepiratebay.org">PirateBay</a></li>
+						<li><a href="http://rutracker.org">Rutracker</a></li>
+						<li><a href="http://premiumize.me">Premiumize</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-1-5">
+				<div class="griditem">
+					<div class="heading">Bildung</div>
+					<ul>
+						<li><a href="http://wolframalpha.com">WolframAlpha</a></li>
+						<li><a href="http://de.wikipedia.org">Wikipedia (de)</a></li>
+						<li><a href="http://en.wikipedia.org">Wikipedia (en)</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-1-5">
+				<div class="griditem">
+					<div class="heading">No more Internet for today</div>
+					<ul>
+						<li><a href="https://pr0gramm.com">PR0GRAMM</a></li>
+						<li><a href="http://4chan.org">4chan</a></li>
+						<li><a href="http://4chan.org/g">/g/ - Technology</a></li>
+						<li><a href="http://4chan.org/his">/his/ - History & Humanities</a></li>
+						<li><a href="http://4chan.org/biz">/biz/ - Shitcoins</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-1-5">
+				<div class="griditem">
+					<div class="heading">Lokale Dienste</div>
+					<ul>
+						<li><a href="http://localhost:8001">PyLoad</a></li>
+						<li><a href="http://localhost:631">CUPS</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-1-5">
+				<div class="griditem">
+					<div class="heading">CryptoCoins</div>
+					<ul>
+						<li><a href="http://cryptowat.ch">Cryptowatch</a></li>
+						<li><a href="./coins.html">Coins</a></li>
+						<li><a href="http://bitpanda.com">BitPanda</a></li>
+						<li><a href="http://binance.com">Binance</a></li>
+						<li><a href="http://bittrex.com">Bittrex</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-2-5">
+				<div class="griditem">
+					<div class="heading" id="weatherheading">Wetter <!--(<span id="location">Ort</span>)--></div>
+					<a class="weatherwidget-io" href="https://forecast7.com/de/52d3913d06/potsdam/" data-label_1=Potsdam></a>
+					<script>
+						!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+					</script>
+						<!--<button class="pure-button" id="weatherprev"><</button>
+						<button class="pure-button" id="weathernext">></button>-->
+				</div>
+			</div>
+			<div class="pure-u-1 pure-u-md-1-1 pure-u-xl-1-2">
+				<div class="griditem">
+					<div class="heading">Bitcoin</div>
+						<!-- TradingView Widget BEGIN -->
+						<script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
+						<script type="text/javascript">
+						new TradingView.widget({
+						  "height": 300,
+						  "symbol": "BTCUSD",
+						  "interval": "60",
+						  "timezone": "Europe/Berlin",
+						  "theme": "White",
+						  "style": "1",
+						  "locale": "de",
+						  "toolbar_bg": "#f1f3f6",
+						  "hide_top_toolbar": true,
+						  "save_image": false,
+						  "hideideas": true
+						});
+						</script>
+						<!-- TradingView Widget END -->
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

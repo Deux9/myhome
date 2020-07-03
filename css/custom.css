@@ -1,0 +1,100 @@
+html {
+	background: #fff;
+	}
+
+.header {
+	text-align:center;
+}
+	h1 {
+		font-size: 3em;
+		font-weight: 100;
+	}
+
+.pure-g {
+	padding:0 20px;
+}
+
+.griditem {
+	margin-top:2em;
+	color: #707070;
+}
+
+	.griditem .heading {
+		color: #565d64;
+		text-transform: uppercase;
+		font-size: 90%;
+		border-bottom: 1px solid #DFDFDF;
+		line-height: 1.5m;
+	}
+	.griditem ul {
+		list-style: none;
+		padding-left: 0;
+		margin:0
+	}
+	
+	.griditem a {
+		color: #707070;
+		display: block;
+		line-height: 1.5em;
+		text-decoration:none;
+	}
+	
+	.griditem li {
+		position: relative;
+		list-style: none;
+		display: block;
+		padding: 5px 0;
+	}
+	
+		.griditem li:hover {
+			background-color:#707070;
+		}
+			.griditem li:hover a {
+				color:#ffffff;
+			}
+	
+	.griditem form {
+		padding:10px 0px;
+		text-align:center;
+		}
+		.griditem form input[type="text"]:focus {
+			border-color:#707070;
+		}
+	.griditem img {
+		width:100%;
+	}
+
+.border-bottom {
+	border-bottom: 1px solid #E0E0E0;
+}
+
+.weather {
+	text-align: center;
+	%vertical-align: middle;
+	display:inline-block;
+	width: 100%;
+}
+
+	.weather i{
+		font-family: weather;
+		font-weight: 400l;
+		font-style: normal;
+		font-size: 2.5em;
+	}
+	
+	.weather p{
+		padding: 0;
+		margin: 0;
+	}
+	
+	.weather #day0{
+		line-height: 150px;
+		height: 150px;
+		text-align:center;
+		width: 100%;
+		font-size: 4em;
+	}
+	
+		.weather #day0 i {
+			font-size: 1.5em;
+		}
