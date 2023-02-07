@@ -64,37 +64,7 @@ html {
 		width:100%;
 	}
 
-.border-bottom {
-	border-bottom: 1px solid #E0E0E0;
-}
+	.griditem hr {
+		border-top: 1px solid #DFDFDF;
+	}
 
-.weather {
-	text-align: center;
-	%vertical-align: middle;
-	display:inline-block;
-	width: 100%;
-}
-
-	.weather i{
-		font-family: weather;
-		font-weight: 400l;
-		font-style: normal;
-		font-size: 2.5em;
-	}
-	
-	.weather p{
-		padding: 0;
-		margin: 0;
-	}
-	
-	.weather #day0{
-		line-height: 150px;
-		height: 150px;
-		text-align:center;
-		width: 100%;
-		font-size: 4em;
-	}
-	
-		.weather #day0 i {
-			font-size: 1.5em;
-		}
