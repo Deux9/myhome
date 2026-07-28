@@ -157,10 +157,166 @@
 			<div class="pure-u-1 pure-u-md-1-3 pure-u-xl-2-5">
 				<div class="griditem">
 					<div class="heading" id="weatherheading">Wetter <!--(<span id="location">Ort</span>)--></div>
-				<a class="weatherwidget-io" href="https://forecast7.com/de/52d6012d34/rathenow/" data-label_1="Rathenow" >RATHENOW</a>
-				<script>
-				!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-				</script>
+					<div id="openmeteo-widget" class="openmeteo-widget" data-city="Rathenow" data-days="7">
+						<div class="owm-current-row">
+							<div class="owm-city" id="owm-city">Rathenow</div>
+							<div class="owm-main-icon" id="owm-main-icon" aria-hidden="true"></div>
+							<div class="owm-now">
+								<div class="owm-temp" id="owm-temp">--°C</div>
+								<div class="owm-desc" id="owm-desc">Lade Wetter...</div>
+							</div>
+						</div>
+						<div class="owm-days" id="owm-days"></div>
+					</div>
+					<script>
+					(function () {
+						var widget = document.getElementById('openmeteo-widget');
+						if (!widget) {
+							return;
+						}
+
+						var cityName = widget.getAttribute('data-city') || 'Rathenow';
+						var days = Math.min(Math.max(parseInt(widget.getAttribute('data-days') || '7', 10), 1), 7);
+						var timezone = 'Europe/Berlin';
+						var dayNames = ['So.', 'Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.'];
+
+						var cityEl = document.getElementById('owm-city');
+						var tempEl = document.getElementById('owm-temp');
+						var descEl = document.getElementById('owm-desc');
+						var mainIconEl = document.getElementById('owm-main-icon');
+						var daysEl = document.getElementById('owm-days');
+
+						function weatherCodeMeta(code) {
+							if (code === 0) {
+								return { text: 'Klarer Himmel', icon: 'clear' };
+							}
+							if (code === 1 || code === 2) {
+								return { text: 'Leicht bewölkt', icon: 'partly' };
+							}
+							if (code === 3) {
+								return { text: 'Bedeckt', icon: 'cloud' };
+							}
+							if (code === 45 || code === 48) {
+								return { text: 'Nebel', icon: 'fog' };
+							}
+							if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) {
+								return { text: 'Regen', icon: 'rain' };
+							}
+							if ((code >= 71 && code <= 77) || code === 85 || code === 86) {
+								return { text: 'Schnee', icon: 'snow' };
+							}
+							if (code >= 95 && code <= 99) {
+								return { text: 'Gewitter', icon: 'storm' };
+							}
+							return { text: 'Wetter', icon: 'cloud' };
+						}
+
+						function iconSvg(kind, large) {
+							var className = large ? 'owm-icon owm-icon-large' : 'owm-icon';
+							if (kind === 'clear') {
+								return '<svg class="' + className + '" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="14"/><path d="M32 8v8M32 48v8M8 32h8M48 32h8M15 15l6 6M43 43l6 6M49 15l-6 6M21 43l-6 6"/></svg>';
+							}
+							if (kind === 'partly') {
+								return '<svg class="' + className + '" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="22" r="9"/><path d="M22 7v5M22 32v5M7 22h5M32 22h5M11 11l4 4M29 29l4 4"/><path d="M18 47h28a9 9 0 0 0 0-18 12 12 0 0 0-23-3 10 10 0 0 0-5 21z"/></svg>';
+							}
+							if (kind === 'cloud') {
+								return '<svg class="' + className + '" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 47h30a10 10 0 0 0 0-20 14 14 0 0 0-27-3 11 11 0 0 0-3 23z"/></svg>';
+							}
+							if (kind === 'fog') {
+								return '<svg class="' + className + '" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 33h30a10 10 0 0 0 0-20 14 14 0 0 0-27-3 11 11 0 0 0-3 23z"/><path d="M14 46h36M18 54h28"/></svg>';
+							}
+							if (kind === 'rain') {
+								return '<svg class="' + className + '" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 37h30a10 10 0 0 0 0-20 14 14 0 0 0-27-3 11 11 0 0 0-3 23z"/><path d="M24 45l-3 8M34 45l-3 8M44 45l-3 8"/></svg>';
+							}
+							if (kind === 'snow') {
+								return '<svg class="' + className + '" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 37h30a10 10 0 0 0 0-20 14 14 0 0 0-27-3 11 11 0 0 0-3 23z"/><path d="M23 49h8M27 45v8M37 49h8M41 45v8"/></svg>';
+							}
+							if (kind === 'storm') {
+								return '<svg class="' + className + '" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 37h30a10 10 0 0 0 0-20 14 14 0 0 0-27-3 11 11 0 0 0-3 23z"/><path d="M31 45l-6 10h7l-3 7 10-13h-7l3-4"/></svg>';
+							}
+							return iconSvg('cloud', large);
+						}
+
+						function dayLabel(dateIso) {
+							var date = new Date(dateIso);
+							return dayNames[date.getDay()] || '';
+						}
+
+						function setError(message) {
+							descEl.textContent = message;
+							tempEl.textContent = '--\u00b0C';
+							mainIconEl.innerHTML = iconSvg('cloud', true);
+							daysEl.innerHTML = '';
+						}
+
+						function render(data, cityLabel) {
+							if (!data || !data.current || !data.daily) {
+								setError('Keine Daten verfügbar');
+								return;
+							}
+
+							cityEl.textContent = cityLabel;
+							var currentMeta = weatherCodeMeta(data.current.weather_code);
+							tempEl.textContent = Math.round(data.current.temperature_2m) + '\u00b0C';
+							descEl.textContent = currentMeta.text;
+							mainIconEl.innerHTML = iconSvg(currentMeta.icon, true);
+
+							var listHtml = '';
+							for (var i = 0; i < days; i += 1) {
+								if (!data.daily.time[i]) {
+									break;
+								}
+								var meta = weatherCodeMeta(data.daily.weather_code[i]);
+								var maxTemp = Math.round(data.daily.temperature_2m_max[i]);
+								var minTemp = Math.round(data.daily.temperature_2m_min[i]);
+								listHtml += '<div class="owm-day">'
+									+ '<div class="owm-day-name">' + dayLabel(data.daily.time[i]) + '</div>'
+									+ '<div class="owm-day-icon">' + iconSvg(meta.icon, false) + '</div>'
+									+ '<div class="owm-day-max">' + maxTemp + '\u00b0C</div>'
+									+ '<div class="owm-day-min">' + minTemp + '\u00b0C</div>'
+									+ '</div>';
+							}
+							daysEl.innerHTML = listHtml;
+						}
+
+						function geocodeCity(name) {
+							var url = 'https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(name) + '&count=1&language=de&format=json';
+							return fetch(url, { cache: 'no-store' })
+								.then(function (response) { return response.json(); })
+								.then(function (payload) {
+									if (!payload.results || !payload.results.length) {
+										throw new Error('Ort nicht gefunden');
+									}
+									return payload.results[0];
+								});
+						}
+
+						function loadWeather() {
+							return geocodeCity(cityName)
+								.then(function (place) {
+									var params = new URLSearchParams({
+										latitude: place.latitude,
+										longitude: place.longitude,
+										current: 'temperature_2m,weather_code,is_day',
+										daily: 'weather_code,temperature_2m_max,temperature_2m_min',
+										forecast_days: String(days),
+										timezone: timezone
+									});
+									return fetch('https://api.open-meteo.com/v1/forecast?' + params.toString(), { cache: 'no-store' })
+										.then(function (response) { return response.json(); })
+										.then(function (forecast) {
+											render(forecast, place.name);
+										});
+								})
+								.catch(function () {
+									setError('Wetter konnte nicht geladen werden');
+								});
+						}
+
+						loadWeather();
+						setInterval(loadWeather, 30 * 60 * 1000);
+					})();
+					</script>
 						<!--<button class="pure-button" id="weatherprev"><</button>
 						<button class="pure-button" id="weathernext">></button>-->
 				</div>
